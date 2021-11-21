@@ -1,5 +1,6 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Student;
 import services.StudentService;
 
@@ -19,8 +20,11 @@ public class StudentFindBySsnController extends HttpServlet {
         String ssn =  req.getParameter("ssn");
         try {
             StudentService service = new StudentService();
-//            Student student =  service.findBySsn(ssn);
-            Student student = service.findById(12);
+            Student student =  service.findBySsn(ssn);
+//            Student student = service.findById(12);
+            ObjectMapper mapper = new ObjectMapper();
+            String result = mapper.writeValueAsString(student);
+            resp.getWriter().print(result);
 
         } catch (SQLException e) {
             e.printStackTrace();

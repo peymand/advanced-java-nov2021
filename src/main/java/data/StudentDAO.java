@@ -16,7 +16,7 @@ public class StudentDAO {
     public StudentDAO() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "123456");
         } catch (Exception e) {
             throw new SQLException("Database is not available!");
         }
