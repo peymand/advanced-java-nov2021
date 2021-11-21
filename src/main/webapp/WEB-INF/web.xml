@@ -8,4 +8,13 @@
   <welcome-file-list>
     <welcome-file>home.do</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>Dummy</servlet-name>
+    <servlet-class>controllers.StudentFindBySsnController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Dummy</servlet-name>
+    <url-pattern>/student-find-by-ssn.do</url-pattern>
+  </servlet-mapping>
 </web-app>

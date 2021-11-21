@@ -16,7 +16,7 @@ public class StudentDAO {
     public StudentDAO() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "123456");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "12345");
         } catch (Exception e) {
             throw new SQLException("Database is not available!");
         }
@@ -94,6 +94,29 @@ public class StudentDAO {
             }
         } else
             throw new SQLException("Connection is null");
+        if(student == null)
+            throw new StudentNotFoundException("student no found");
+        else
+            return student;
+    }
+
+    public Student findBySsn(String ssn) throws SQLException {
+        Student student = null;
+        if (connection != null) {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM STUDENT WHERE SSN = ?");
+            ps.setString(1, ssn);
+            ResultSet res = ps.executeQuery();
+
+            if(res.next()){
+                student = new Student();
+                student.setId(res.getInt("id"));
+                student.setName(res.getString(2));
+                student.setFamily(res.getString(3));
+                student.setMajor(res.getString(4));
+                student.setSsn(res.getString(5));
+            }
+        } else
+            throw new SQLException("Error in database connection");
         if(student == null)
             throw new StudentNotFoundException("student no found");
         else

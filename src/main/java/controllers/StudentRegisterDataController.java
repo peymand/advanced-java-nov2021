@@ -34,7 +34,8 @@ public class StudentRegisterDataController extends HttpServlet {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            resp.sendRedirect("/error.do");
+            String msg = "some error";
+            resp.sendRedirect("/error.do?msg=" + msg);
         }
     }
 }

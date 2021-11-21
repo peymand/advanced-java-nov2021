@@ -36,4 +36,8 @@ public class StudentService {
     public Student findById(int id) throws SQLException {
         return studentDAO.findById(id);
     }
+
+    public Student findBySsn(String ssn) throws SQLException {
+        return studentDAO.findBySsn(ssn);
+    }
 }

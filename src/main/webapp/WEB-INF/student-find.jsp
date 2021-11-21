@@ -53,5 +53,7 @@
 
 </table>
 
+<p id="error-msg" style="color: red; display: none"></p>
+
 </body>
 </html>

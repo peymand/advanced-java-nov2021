@@ -29,6 +29,8 @@ function sendAsyncDataToRestService() {
    //callback functions
 
     xhr.onreadystatechange = function () {
+        document.getElementById("error-msg").style.display = "none";
+        document.getElementById("st-table").style.display = "none";
 
         if (xhr.readyState == 4 && xhr.status == 200) {
             var student = xhr.responseText;
@@ -41,6 +43,10 @@ function sendAsyncDataToRestService() {
             document.getElementById("family").innerText = studentData.family;
             document.getElementById("major").innerText = studentData.major;
             document.getElementById("ssnn").innerText = studentData.ssn;
+        }if(xhr.readyState == 4 && xhr.status == 500){
+            var errorMessage = xhr.responseText;
+            document.getElementById("error-msg").style.display = "block";
+            document.getElementById("error-msg").innerText = errorMessage;
         }
 
 

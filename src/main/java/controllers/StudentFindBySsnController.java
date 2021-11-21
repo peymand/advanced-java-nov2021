@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/student-find-by-ssn.do")
+
 public class StudentFindBySsnController extends HttpServlet {
 
     @Override
@@ -21,13 +21,15 @@ public class StudentFindBySsnController extends HttpServlet {
         try {
             StudentService service = new StudentService();
             Student student =  service.findBySsn(ssn);
-//            Student student = service.findById(12);
             ObjectMapper mapper = new ObjectMapper();
             String result = mapper.writeValueAsString(student);
             resp.getWriter().print(result);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            ObjectMapper mapper = new ObjectMapper();
+            String result = mapper.writeValueAsString(e.getMessage());
+            resp.setStatus(500);
+            resp.getWriter().print(result);
         }
     }
 }

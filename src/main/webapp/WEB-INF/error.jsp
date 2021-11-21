@@ -22,7 +22,9 @@
 </ul>
 
     <div class="alert">
-        <strong>اخطار!</strong>     در عملیات خطایی رخ داده است
+        <strong>اخطار!</strong>    <%=request.getParameter("msg") %> ${param.msg}
     </div>
+<%--    <%request.getRequestDispatcher("sdsdsdsd").include(request,response);%>--%>
+
 </body>
 </html>
