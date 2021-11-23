@@ -14,5 +14,10 @@
 
 <h3>Home</h3>
 
+<form action="/init.do">
+    <input type="text" name="name"/>
+    <input type="submit" value="submit"/>
+</form>
+
 </body>
 </html>
