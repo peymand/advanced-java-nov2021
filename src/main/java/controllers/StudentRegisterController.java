@@ -12,7 +12,6 @@ public class StudentRegisterController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().print("ali");
         req.getRequestDispatcher("/WEB-INF/register.jsp").forward(req,resp);
     }
 }

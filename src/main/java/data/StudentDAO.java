@@ -2,6 +2,8 @@ package data;
 
 import entities.Student;
 import exceptions.StudentNotFoundException;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,12 +13,12 @@ public class StudentDAO {
 
 
     private Connection connection;
-
+    private static Logger logger = LogManager.getLogger(StudentDAO.class);
 
     public StudentDAO() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "12345");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "12345667");
         } catch (Exception e) {
             throw new SQLException("Database is not available!");
         }
@@ -31,6 +33,7 @@ public class StudentDAO {
             ps.setString(3, student.getMajor());
             ps.setString(4, student.getSsn());
             int res = ps.executeUpdate();
+            logger.info(student.toString() + " persist!");
             return res;
         }
         return -1;

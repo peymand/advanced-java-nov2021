@@ -22,9 +22,9 @@ public class HomeController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        BasicConfigurator.configure();
+        logger.debug("in home controller");
         logger.info("Hello world");
-        logger.info("we are in logger info mode");
+        logger.warn("we are in logger info mode");
 
         req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req,resp);
     }
