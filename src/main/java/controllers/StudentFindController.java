@@ -1,5 +1,7 @@
 package controllers;
 
+import util.WebUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -12,15 +14,10 @@ import java.io.IOException;
 public class StudentFindController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = "";
         Cookie[] cookies = req.getCookies();
-        if (cookies != null)
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("init-name")) {
-                    name = cookie.getValue();
-                }
-            }
-        req.setAttribute("name", name);
+        String value = WebUtil.getCookieValue("init-name", cookies);
+        req.setAttribute("name", value);
         req.getRequestDispatcher("/WEB-INF/student-find.jsp").forward(req, resp);
     }
+
 }
