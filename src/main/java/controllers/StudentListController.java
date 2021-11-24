@@ -31,7 +31,7 @@ public class StudentListController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/student-list.jsp").forward(req, resp);
 
         } catch (SQLException e) {
-            resp.sendRedirect("/error.jsp");
+            resp.sendRedirect("/error.do");
         }
 
 

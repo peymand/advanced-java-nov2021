@@ -24,7 +24,7 @@
 </ul>
 
 <h3>Search for Students</h3>
-
+<p>Welcome ${name}!</p>
 <div class="container-box">
 
     <form action="/student-find-by-ssn.do" method="post">

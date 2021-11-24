@@ -1,3 +1,4 @@
+<%@ page session="false" %>
 <html>
 <head>
     <link rel="stylesheet" href="/css/main.css"/>
@@ -13,6 +14,13 @@
 </ul>
 
 <h3>Home</h3>
+<p>${info}</p>
+<p>${rn}</p>
+<form action="/init.do">
+    <input type="text" name="name"/>
+    <input type="text" name="role"/>
+    <input type="submit" value="submit"/>
+</form>
 
 </body>
 </html>
