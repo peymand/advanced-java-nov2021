@@ -73,7 +73,6 @@ ul.navigation li a.active {
 /* End Navigation Style */
 
 
-
 /* Start Alert Style */
 
 .alert {
@@ -84,22 +83,30 @@ ul.navigation li a.active {
     transition: opacity 0.6s;
     margin-bottom: 15px;
     margin-top: 15px;
-    direction: rtl;
-    text-align: right;
+    text-align: left;
     font-family: system-ui;
 }
 
-.alert.success {background-color: #04AA6D;}
-.alert.info {background-color: #2196F3;}
-.alert.warning {background-color: #ff9800;}
+.alert.success {
+    background-color: #04AA6D;
+}
+
+.alert.info {
+    background-color: #2196F3;
+}
+
+.alert.warning {
+    background-color: #ff9800;
+}
 
 /* End Alert Style */
 
 
-
 /* Start Form Style */
 
-* {box-sizing: border-box;}
+* {
+    box-sizing: border-box;
+}
 
 input[type=text], select, textarea {
     width: 100%;
@@ -108,8 +115,15 @@ input[type=text], select, textarea {
     border-radius: 4px;
     box-sizing: border-box;
     margin-top: 6px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     resize: vertical;
+}
+
+input:valid {
+    color: green;
+}
+input:invalid {
+    color: red;
 }
 
 input[type=submit] {
@@ -132,3 +146,18 @@ input[type=submit]:hover {
 }
 
 /* End Form Style */
+
+
+/* Start Error Message Style */
+
+.error-message {
+    color: red;
+    display: none;
+    margin: 0;
+}
+
+#error-msg {
+    display: none;
+}
+
+/* End Error Message Style */

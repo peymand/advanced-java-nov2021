@@ -6,11 +6,56 @@ function confirmOnEdit() {
     return confirm("Do you like to edit?");
 }
 
-function validateForm() {
-    var data = document.getElementById("ssn").value;
-    if (data == "" || data.length < 4) {
+function validateRegisterForm() {
+
+    document.getElementById("errMsg").style.display = "none";
+    document.getElementById("errMsgSSN").style.display = "none";
+    document.getElementById("errMsgName").style.display = "none";
+    document.getElementById("errMsgFamily").style.display = "none";
+    document.getElementById("errMsgMajor").style.display = "none";
+
+    var ssn = document.getElementById("ssn").value;
+    var fname = document.getElementById("fname").value;
+    var family = document.getElementById("family").value;
+    var major = document.getElementById("major").value;
+    if (ssn == "" && fname == "" && family == "" && major == "") {
         document.getElementById("errMsg").style.display = "block";
+        document.getElementById("errMsg").innerText = "* All form fields must be filled";
     } else {
+
+        if (ssn == "") {
+            document.getElementById("errMsgSSN").style.display = "block";
+            document.getElementById("errMsgSSN").innerText = "* SSN value must be filled";
+        } else if (isNaN(ssn) || ssn.length !== 4){
+            document.getElementById("errMsgSSN").style.display = "block";
+            document.getElementById("errMsgSSN").innerText = "* SSN value must be a number with 4 digit";
+        }
+        else if (fname == "") {
+            document.getElementById("errMsgName").style.display = "block";
+        } else if (family == "") {
+            document.getElementById("errMsgFamily").style.display = "block";
+        } else if (major == "") {
+            document.getElementById("errMsgMajor").style.display = "block";
+        } else {
+            return true;
+        }
+    }
+    return false;
+}
+
+function validateForm() {
+    document.getElementById("errMsg").style.display = "none";
+
+    var data = document.getElementById("ssn").value;
+    if (data == "") {
+        document.getElementById("errMsg").style.display = "block";
+        document.getElementById("errMsg").innerText = "* SSN value must be filled";
+    }
+    else if (isNaN(data) || data.length !== 4){
+        document.getElementById("errMsg").style.display = "block";
+        document.getElementById("errMsg").innerText = "* SSN value must be a number with 4 digit";
+    }
+    else {
         //ajax
         sendAsyncDataToRestService();
     }
