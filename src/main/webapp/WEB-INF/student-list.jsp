@@ -1,3 +1,9 @@
+<%@ page import="entities.Student" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <% String pageTitle = "List Form"; %>
 <jsp:include page="header.jsp" flush="true">
     <jsp:param name="pageTitle" value="<%=pageTitle%>"/>
