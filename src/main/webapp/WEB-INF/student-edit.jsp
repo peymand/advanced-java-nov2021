@@ -12,6 +12,9 @@
 <head>
     <title>Edit Form</title>
     <link rel="stylesheet" href="/css/main.css"/>
+
+    <link rel="stylesheet" href="/css/sweetalert2.css"/>
+    <script src="/js/sweetalert2.min.js" type="application/javascript"></script>
     <script src="/js/main.js" type="application/javascript"></script>
 </head>
 <body>
@@ -44,7 +47,8 @@
         <label for="major">Major</label>
         <input type="text" id="major" name="major" placeholder="major.." value="${std.major}">
 
-        <input type="submit" value="Edit">
+        <input type="submit" hidden value="Edit" id="edit-student">
+        <input type="submit" value="Edit" onclick="return confirmOnEdit()">
     </form>
 </div>
 

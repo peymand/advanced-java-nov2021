@@ -1,10 +1,45 @@
 function confirmToDelete() {
-    return confirm("Are you sure to delete?");
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#04aa83',
+        cancelButtonColor: '#ed5e68',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById("delete-student").click();
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        }
+    })
+    return false
 }
 
 function confirmOnEdit() {
-    return confirm("Do you like to edit?");
-}
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#04aa83',
+        cancelButtonColor: '#ed5e68',
+        confirmButtonText: 'Yes, edit it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById("edit-student").click();
+            Swal.fire(
+                'Edited!',
+                'Your field has been modified.',
+                'success'
+            )
+        }
+    })
+    return false}
 
 function validateForm() {
     var data = document.getElementById("ssn").value;

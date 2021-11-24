@@ -15,6 +15,9 @@
 <head>
     <title>List Form</title>
     <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/sweetalert2.css"/>
+    <script src="/js/sweetalert2.min.js" type="application/javascript"></script>
+
     <script src="/js/main.js" type="application/javascript"></script>
 </head>
 <body>
@@ -46,16 +49,22 @@
             <td>${st.family}</td>
             <td>${st.major}</td>
             <td>${st.ssn}</td>
-            <td><a href="/student-delete.do?id=${st.id}"><img src="/img/icon-delete-16.jpg"
-                                                              style="width: 40px; height: 40px;"
-                                                              onclick="return confirmToDelete()"/></a>
-                <a href="/student-fetch-to-edit-page.do?id=${st.id}"> <img src="/img/edit.png" class="square40px"
-                                                                           onclick="return confirmOnEdit()"/> </a></td>
+            <td>
+                <a href="/student-delete.do?id=${st.id}" id="delete-student">
+                    <img src="/img/icon-delete-16.jpg" style="width: 40px; height: 40px;"
+                         onclick="return confirmToDelete()"/>
+                </a>
+                <a href="/student-fetch-to-edit-page.do?id=${st.id}">
+                    <img src="/img/edit.png" class="square40px"/>
+                </a>
+            </td>
         </tr>
     </c:forEach>
 </table>
 
 
 </table>
+
+
 </body>
 </html>
