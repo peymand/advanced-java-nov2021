@@ -22,7 +22,9 @@
 </ul>
 
     <div class="alert">
-        <strong>اخطار!</strong>    <%=request.getParameter("msg") %> ${param.msg}
+        <strong>اخطار!</strong>
+<%--        <%=request.getParameter("msg") %>--%>
+        ${param.msg}
     </div>
 
 </body>
