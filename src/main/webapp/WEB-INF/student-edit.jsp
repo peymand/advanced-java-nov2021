@@ -26,13 +26,12 @@
         <p id="errMsgFamily" class="error-message">* Family value must be filled</p> <br/>
 
         <label for="major">Major</label>
-
-        <label for="major">Major</label>
         <input type="text" id="major" name="major" placeholder="major.." value="${std.major}" onkeyup="validateRegisterForm()">
         <p id="errMsgMajor" class="error-message">* Major value must be filled</p> <br/>
 
         <p id="errMsg" class="error-message"></p> <br/>
-        <input type="submit" value="Edit" onclick="return validateRegisterForm()">
+        <input type="submit" hidden value="Edit" id="edit-student">
+        <input type="submit" value="Edit" onclick="return confirmOnEdit()">
     </form>
 </div>
 
