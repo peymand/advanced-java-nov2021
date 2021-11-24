@@ -8,8 +8,6 @@
 <div class="container-box">
 
     <form action="/student-find-by-ssn.do" method="post">
-        ID : <input type="text" name="ssn" id="ssn" type="text"/>
-        <p id="errMsg" style="color: red; display: none">* Ssn value must be filled</p> <br/>
         SSN : <input type="text" name="ssn" id="ssn" onkeyup="validateForm()" minlength="4" maxlength="4" /> <p id="errMsg" class="error-message"></p> <br/>
         <input type="submit" value="search" onclick="return validateForm()"/>
     </form>
