@@ -8,10 +8,21 @@
 <h3>Home</h3>
 <p>${info}</p>
 <p>${rn}</p>
-<form action="/init.do">
-    <input type="text" name="name"/>
-    <input type="text" name="role"/>
-    <input type="submit" value="submit"/>
-</form>
+
+<div class="container-box">
+
+    <form action="/init.do">
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="name..">
+
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role" placeholder="role..">
+
+        <input type="submit" value="submit"/>
+
+    </form>
+
+</div>
 
 <%@ include file="footer.jsp" %>

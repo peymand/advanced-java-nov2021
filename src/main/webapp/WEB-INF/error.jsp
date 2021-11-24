@@ -5,9 +5,10 @@
     <jsp:param name="pageTitle" value="<%=pageTitle%>"/>
 </jsp:include>
 
-<div class="alert">
-    <strong>اخطار!</strong> <%=request.getParameter("msg") %> ${param.msg}
-</div>
-
+    <div class="alert">
+        <strong>اخطار!</strong>
+<%--        <%=request.getParameter("msg") %>--%>
+        ${param.msg}
+    </div>
 
 <%@ include file="footer.jsp" %>
