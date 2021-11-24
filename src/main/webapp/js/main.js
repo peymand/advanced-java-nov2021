@@ -72,7 +72,8 @@ function validateRegisterForm() {
         } else if (major == "") {
             document.getElementById("errMsgMajor").style.display = "block";
         } else {
-            return true;
+            document.getElementById("register-student").style.display = "block";
+            document.getElementById("validation-register-student").style.display = "none";
         }
     }
     return false;

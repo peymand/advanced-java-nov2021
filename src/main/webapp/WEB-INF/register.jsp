@@ -27,7 +27,9 @@
         <p id="errMsgMajor" class="error-message">* Major value must be filled</p> <br/>
 
         <p id="errMsg" class="error-message"></p> <br/>
-        <input type="submit" value="Register" onclick="return validateRegisterForm()">
+        <input type="submit" value="Register" hidden id="register-student">
+        <input type="submit" value="Register" id="validation-register-student" onclick="return validateRegisterForm()">
+
     </form>
 </div>
 
