@@ -5,9 +5,11 @@ import exceptions.StudentNotFoundException;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class StudentDAO {
 
@@ -17,8 +19,12 @@ public class StudentDAO {
 
     public StudentDAO() throws SQLException {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "123456");
+            InputStream is = getClass().getClassLoader()
+                    .getResourceAsStream("database.properties");
+            Properties properties = new Properties();
+            properties.load(is);
+            Class.forName(properties.getProperty("driver"));
+            connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("username"), properties.getProperty("password"));
         } catch (Exception e) {
             throw new SQLException("Database is not available!");
         }
