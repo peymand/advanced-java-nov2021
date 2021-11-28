@@ -12,9 +12,24 @@
   <servlet>
     <servlet-name>Dummy</servlet-name>
     <servlet-class>controllers.StudentFindBySsnController</servlet-class>
+    <init-param>
+      <param-name>data</param-name>
+      <param-value>123</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
     <servlet-name>Dummy</servlet-name>
     <url-pattern>/student-find-by-ssn.do</url-pattern>
   </servlet-mapping>
+
+
+  <session-config>
+    <session-timeout>1</session-timeout>
+  </session-config>
+
+  <context-param>
+    <param-name>data</param-name>
+    <param-value>123456</param-value>
+  </context-param>
+
 </web-app>

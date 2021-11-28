@@ -15,8 +15,15 @@ import java.sql.SQLException;
 
 public class StudentFindBySsnController extends HttpServlet {
 
+    int x;
+    public StudentFindBySsnController(){
+        x=10;
+    }
+
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String data =  this.getServletConfig().getInitParameter("data");
         String ssn =  req.getParameter("ssn");
         try {
             StudentService service = new StudentService();

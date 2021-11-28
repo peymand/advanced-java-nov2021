@@ -46,7 +46,7 @@ public class StudentRegisterDataController extends HttpServlet {
 
         } catch (SQLException e) {
             String msg = "some error";
-            resp.sendRedirect("/error.do?msg=" + msg);
+            resp.sendRedirect(req.getContextPath() +  "/error.do?msg=" + msg);
             logger.error(String.format("error in persist student with message %s",e.getMessage()));
         }
     }

@@ -1,6 +1,7 @@
 <%@ page import="entities.Student" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
     Java Standard Tag Library
 
@@ -14,8 +15,8 @@
 <html>
 <head>
     <title>List Form</title>
-    <link rel="stylesheet" href="/css/main.css"/>
-    <script src="/js/main.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="<c:url value="/css/main.css"/>" />
+    <script src="<c:url value="/js/main.js" var="jspath"/>" type="application/javascript"></script>
 </head>
 <body>
 
@@ -38,6 +39,18 @@
         <th>SSN</th>
         <th>Action</th>
     </tr>
+<%--   Standard Action --%>
+<%--    <jsp:forward page="index.jsp"></jsp:forward>--%>
+<%--    ${data} Scope --%>
+
+<%--    <jsp:getProperty name="data" property="name"/>--%>
+<%--    ${data.name}--%>
+    ${sessionScope.data}
+    ${requestScope.data}
+    ${applicationScope.data}
+    ${data}
+
+    ${pageScope.jspath}
     <c:forEach items="${list}" var="st" varStatus="loopstatus">
 
         <tr>
@@ -49,7 +62,7 @@
             <td><a href="/student-delete.do?id=${st.id}"><img src="/img/icon-delete-16.jpg"
                                                               style="width: 40px; height: 40px;"
                                                               onclick="return confirmToDelete()"/></a>
-                <a href="/student-fetch-to-edit-page.do?id=${st.id}"> <img src="/img/edit.png" class="square40px"
+                <a href="<c:url value="/student-fetch-to-edit-page.do?id=${st.id}"/>"> <img src="/img/edit.png" class="square40px"
                                                                            onclick="return confirmOnEdit()"/> </a></td>
         </tr>
     </c:forEach>
