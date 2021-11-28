@@ -1,6 +1,10 @@
-<% String pageTitle = "Edit Form"; %>
+<%
+    String pageTitle = "Edit Form";
+    String pageRoute = "/student-register-page.do";
+%>
 <jsp:include page="header.jsp" flush="true">
     <jsp:param name="pageTitle" value="<%=pageTitle%>" />
+        <jsp:param name="pageRoute" value="<%=pageRoute%>" />
 </jsp:include>
 
 <h3>Edit a Student</h3>
