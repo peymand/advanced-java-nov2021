@@ -8,17 +8,23 @@ import org.apache.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class StudentDAO {
 
 
     private Connection connection;
     private static Logger logger = LogManager.getLogger(StudentDAO.class);
+    ResourceBundle resource = ResourceBundle.getBundle("database");
+    String username=resource.getString("username");
+    String password=resource.getString("password");
+    String url=resource.getString("url");
+    String jdbcDriver=resource.getString("jdbcDriver");
 
     public StudentDAO() throws SQLException {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "");
+            Class.forName(jdbcDriver);
+            connection = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             throw new SQLException("Database is not available!");
         }
