@@ -4,9 +4,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-<% String pageTitle = "List Form"; %>
+<%
+    String pageTitle = "List Form";
+        String pageRoute = "/student-list-page.do";
+%>
 <jsp:include page="header.jsp" flush="true">
     <jsp:param name="pageTitle" value="<%=pageTitle%>"/>
+        <jsp:param name="pageRoute" value="<%=pageRoute%>" />
 </jsp:include>
 
 <h3>List of Students</h3>
