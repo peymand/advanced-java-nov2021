@@ -1,16 +1,97 @@
 function confirmToDelete() {
-    return confirm("Are you sure to delete?");
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#04aa83',
+        cancelButtonColor: '#ed5e68',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById("delete-student").click();
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        }
+    })
+    return false
 }
 
 function confirmOnEdit() {
-    return confirm("Do you like to edit?");
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#04aa83',
+        cancelButtonColor: '#ed5e68',
+        confirmButtonText: 'Yes, edit it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById("edit-student").click();
+            Swal.fire(
+                'Edited!',
+                'Your field has been modified.',
+                'success'
+            )
+        }
+    })
+    return false}
+
+function validateRegisterForm() {
+
+    document.getElementById("errMsg").style.display = "none";
+    document.getElementById("errMsgSSN").style.display = "none";
+    document.getElementById("errMsgName").style.display = "none";
+    document.getElementById("errMsgFamily").style.display = "none";
+    document.getElementById("errMsgMajor").style.display = "none";
+
+    var ssn = document.getElementById("ssn").value;
+    var fname = document.getElementById("fname").value;
+    var family = document.getElementById("family").value;
+    var major = document.getElementById("major").value;
+    if (ssn == "" && fname == "" && family == "" && major == "") {
+        document.getElementById("errMsg").style.display = "block";
+        document.getElementById("errMsg").innerText = "* All form fields must be filled";
+    } else {
+
+        if (ssn == "") {
+            document.getElementById("errMsgSSN").style.display = "block";
+            document.getElementById("errMsgSSN").innerText = "* SSN value must be filled";
+        } else if (isNaN(ssn) || ssn.length !== 4){
+            document.getElementById("errMsgSSN").style.display = "block";
+            document.getElementById("errMsgSSN").innerText = "* SSN value must be a number with 4 digit";
+        }
+        else if (fname == "") {
+            document.getElementById("errMsgName").style.display = "block";
+        } else if (family == "") {
+            document.getElementById("errMsgFamily").style.display = "block";
+        } else if (major == "") {
+            document.getElementById("errMsgMajor").style.display = "block";
+        } else {
+            document.getElementById("register-student").style.display = "block";
+            document.getElementById("validation-register-student").style.display = "none";
+        }
+    }
+    return false;
 }
 
 function validateForm() {
+    document.getElementById("errMsg").style.display = "none";
+
     var data = document.getElementById("ssn").value;
-    if (data == "" || data.length < 4) {
+    if (data == "") {
         document.getElementById("errMsg").style.display = "block";
-    } else {
+        document.getElementById("errMsg").innerText = "* SSN value must be filled";
+    }
+    else if (isNaN(data) || data.length !== 4){
+        document.getElementById("errMsg").style.display = "block";
+        document.getElementById("errMsg").innerText = "* SSN value must be a number with 4 digit";
+    }
+    else {
         //ajax
         sendAsyncDataToRestService();
     }

@@ -1,23 +1,30 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page session="false" %>
-<html>
-<head>
-    <link rel="stylesheet" href="/css/main.css"/>
-    <script src="/js/main.js" type="application/javascript"></script>
-</head>
-<body>
-
-<ul class="navigation">
-    <li><a class="active" href="/">Home</a></li>
-    <li><a href="/student-register-page.do">Register a Student</a></li>
-    <li><a href="/student-list-page.do">List of Students</a></li>
-    <li><a href="/student-find-page.do">Search a Student</a></li>
-    <li><a href="<c:url value="/admin-area.do" /> ">Admin Panel</a></li>
-</ul>
+<%
+    String pageTitle = "Student Web Application";
+    String pageRoute = "/";
+%>
+<jsp:include page="header.jsp" flush="true">
+    <jsp:param name="pageTitle" value="<%=pageTitle%>" />
+    <jsp:param name="pageRoute" value="<%=pageRoute%>" />
+</jsp:include>
 
 <h3>Home</h3>
+<p>${info}</p>
+<p>${rn}</p>
 
-Welcome to my Site!!
+<div class="container-box">
 
-</body>
-</html>
+    <form action="/init.do">
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="name..">
+
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role" placeholder="role..">
+
+        <input type="submit" value="submit"/>
+
+    </form>
+
+</div>
+
+<%@ include file="footer.jsp" %>
