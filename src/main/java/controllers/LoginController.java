@@ -5,8 +5,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet("/init.do")
-public class InitController extends HttpServlet {
+@WebServlet("/login.do")
+public class LoginController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -15,11 +15,18 @@ public class InitController extends HttpServlet {
         HttpSession session = req.getSession();
         RoleAndName roleAndName = new RoleAndName(name, role);
         session.setAttribute("rn",roleAndName);
-        req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req,resp);
+        if(role.equalsIgnoreCase("admin"))
+            resp.sendRedirect("/admin-area.do");
+        else
+            resp.sendRedirect("/error.do");
     }
     public static class RoleAndName{
         private String name;
         private String role;
+
+        public String getRole() {
+            return role;
+        }
 
         public RoleAndName(String name, String role) {
             this.name = name;

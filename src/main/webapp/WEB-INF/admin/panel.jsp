@@ -15,9 +15,8 @@
     <li><a href="<c:url value="/admin-area.do" /> ">Admin Panel</a></li>
 </ul>
 
-<h3>Home</h3>
+<h3>Admin Panel</h3>
 
-Welcome to my Site!!
-
+This is Admin Panel...
 </body>
 </html>
