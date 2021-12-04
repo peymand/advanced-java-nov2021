@@ -10,5 +10,7 @@
 <%--        <%=request.getParameter("msg") %>--%>
         ${param.msg}
     </div>
+<%--    <%request.getRequestDispatcher("sdsdsdsd").include(request,response);%>--%>
 
 <%@ include file="footer.jsp" %>
+

@@ -9,14 +9,14 @@ function confirmToDelete() {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            document.getElementById("delete-student").click();
-            Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-            )
-        }
-    })
+        document.getElementById("delete-student").click();
+        Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+        )
+    }
+})
     return false
 }
 
@@ -31,14 +31,14 @@ function confirmOnEdit() {
         confirmButtonText: 'Yes, edit it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            document.getElementById("edit-student").click();
-            Swal.fire(
-                'Edited!',
-                'Your field has been modified.',
-                'success'
-            )
-        }
-    })
+        document.getElementById("edit-student").click();
+        Swal.fire(
+            'Edited!',
+            'Your field has been modified.',
+            'success'
+        )
+    }
+})
     return false}
 
 function validateRegisterForm() {
@@ -107,7 +107,7 @@ function sendAsyncDataToRestService() {
 
 
 
-   //callback functions
+    //callback functions
 
     xhr.onreadystatechange = function () {
         document.getElementById("error-msg").style.display = "none";

@@ -1,10 +1,13 @@
+<%@ page import="java.util.List" %>
+<%@ page import="entities.Student" %>
+
 <%
     String pageTitle = "Edit Form";
     String pageRoute = "/student-register-page.do";
 %>
 <jsp:include page="header.jsp" flush="true">
     <jsp:param name="pageTitle" value="<%=pageTitle%>" />
-        <jsp:param name="pageRoute" value="<%=pageRoute%>" />
+    <jsp:param name="pageRoute" value="<%=pageRoute%>" />
 </jsp:include>
 
 <h3>Edit a Student</h3>
@@ -24,8 +27,6 @@
         <p id="errMsgName" class="error-message">* Name value must be filled</p> <br/>
 
         <label for="family">Family</label>
-
-        <label for="family">Family</label>
         <input type="text" id="family" name="family" placeholder="family.." value="${std.family}" onkeyup="validateRegisterForm()">
         <p id="errMsgFamily" class="error-message">* Family value must be filled</p> <br/>
 
@@ -36,6 +37,7 @@
         <p id="errMsg" class="error-message"></p> <br/>
         <input type="submit" hidden value="Edit" id="edit-student">
         <input type="submit" value="Edit" onclick="return confirmOnEdit()">
+
     </form>
 </div>
 

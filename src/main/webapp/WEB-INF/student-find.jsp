@@ -1,10 +1,10 @@
 <%
     String pageTitle = "Search for Students";
-        String pageRoute = "/student-find-page.do";
-    %>
+    String pageRoute = "/student-find-page.do";
+%>
 <jsp:include page="header.jsp" flush="true">
     <jsp:param name="pageTitle" value="<%=pageTitle%>"/>
-        <jsp:param name="pageRoute" value="<%=pageRoute%>" />
+    <jsp:param name="pageRoute" value="<%=pageRoute%>" />
 </jsp:include>
 
 <h3>Search for Students</h3>
@@ -37,7 +37,7 @@
 
 </table>
 
-<div class="alert" id="error-msg">
-</div>
+<div class="alert" id="error-msg"></div>
 
 <%@ include file="footer.jsp" %>
+

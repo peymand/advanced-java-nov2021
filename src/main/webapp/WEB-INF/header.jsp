@@ -19,4 +19,6 @@
            href="${ctx}/student-list-page.do">List of Students</a></li>
     <li><a class="item <%if(url.equals("/student-find-page.do")){%> active <% } %>"
            href="${ctx}/student-find-page.do">Search a Student</a></li>
+    <li><a href="<c:url value="/admin-area.do" /> ">Admin Panel</a></li>
+
 </ul>
