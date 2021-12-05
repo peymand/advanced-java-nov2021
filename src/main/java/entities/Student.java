@@ -1,24 +1,34 @@
 package entities;
 
-public class Student {
 
+
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Setter
+@Getter
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Table(name = "TBL_STUDENT")
+public class Student implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name = "ssn")
     private String ssn;
     private String name;
     private String family;
     private String major;
 
-
-    public Student(int id, String ssn, String name, String family, String major) {
-        this.id = id;
-        this.ssn = ssn;
-        this.name = name;
-        this.family = family;
-        this.major = major;
-    }
-
-    public Student() {
-    }
 
     public Student(String ssn, String name, String family, String major) {
         this.ssn = ssn;
@@ -26,51 +36,13 @@ public class Student {
         this.family = family;
         this.major = major;
     }
-
-    public Student(int id, String name, String family, String major) {
-        this.id = id;
-        this.name = name;
-        this.family = family;
-        this.major = major;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public Student(int id){
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public String getFamily() {
-        return family;
-    }
 
-    public void setFamily(String family) {
-        this.family = family;
-    }
 
-    public String getMajor() {
-        return major;
-    }
 
-    public void setMajor(String major) {
-        this.major = major;
-    }
-
-    public String getSsn() {
-        return ssn;
-    }
-
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
-    }
 }

@@ -1,6 +1,7 @@
 package services;
 
-import data.StudentDAO;
+import data.StudentJDBCDAO;
+import data.StudentORMDAO;
 import entities.Student;
 
 import java.sql.SQLException;
@@ -8,36 +9,44 @@ import java.util.List;
 
 public class StudentService {
 
-    private StudentDAO studentDAO;
+//    private StudentJDBCDAO studentJDBCDAO;
+    private StudentORMDAO studentORMDAO;
 
     public StudentService() throws SQLException{
 
-        studentDAO = new StudentDAO();
+//        studentJDBCDAO = new StudentJDBCDAO();
+        studentORMDAO = new StudentORMDAO();
     }
 
     public int save(Student student) throws SQLException {
-        return studentDAO.save(student);
+//        return studentJDBCDAO.save(student);
+        return studentORMDAO.save(student);
     }
 
     public List<Student> getAll() throws SQLException {
-        return studentDAO.getAll();
+//        return studentJDBCDAO.getAll();
+        return studentORMDAO.getAll();
     }
 
     public void delete(int id) throws SQLException {
 
-        studentDAO.delete(id);
+//        studentJDBCDAO.delete(id);
+        studentORMDAO.delete(id);
     }
 
     public void edit(Student student) throws SQLException {
 
-        studentDAO.edit(student);
+//        studentJDBCDAO.edit(student);
+        studentORMDAO.edit(student);
     }
 
     public Student findById(int id) throws SQLException {
-        return studentDAO.findById(id);
+//        return studentJDBCDAO.findById(id);
+        return studentORMDAO.findById(id);
     }
 
     public Student findBySsn(String ssn) throws SQLException {
-        return studentDAO.findBySsn(ssn);
+//        return studentJDBCDAO.findBySsn(ssn);
+        return studentORMDAO.findBySsn(ssn);
     }
 }

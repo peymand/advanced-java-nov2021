@@ -2,133 +2,26 @@ package data;
 
 import entities.Student;
 import exceptions.StudentNotFoundException;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 
-import java.io.InputStream;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
-public class StudentDAO {
+public interface StudentDAO {
 
+    int save(Student student) throws SQLException;
 
-    private Connection connection;
-    private static Logger logger = LogManager.getLogger(StudentDAO.class);
+    List<Student> getAll() throws SQLException;
 
-    public StudentDAO() throws SQLException {
-        try {
-            InputStream is = getClass().getClassLoader()
-                    .getResourceAsStream("database.properties");
-            Properties properties = new Properties();
-            properties.load(is);
-            Class.forName(properties.getProperty("driver"));
-            connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("username"), properties.getProperty("password"));
-        } catch (Exception e) {
-            throw new SQLException("Database is not available!");
-        }
-    }
+    void delete(int id) throws SQLException;
 
-    public int save(Student student) throws SQLException {
+    int edit(Student student) throws SQLException;
 
-        if (connection != null) {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO STUDENT (NAME , FAMILY ,MAJOR, SSN) VALUES (? , ?, ? , ?)");
-            ps.setString(1, student.getName());
-            ps.setString(2, student.getFamily());
-            ps.setString(3, student.getMajor());
-            ps.setString(4, student.getSsn());
-            int res = ps.executeUpdate();
-            logger.info(student.toString() + " persist!");
-            return res;
-        }
-        return -1;
+    Student findById(int id) throws SQLException, StudentNotFoundException;
 
-    }
+    Student findBySsn(String ssn) throws SQLException;
 
-    public List<Student> getAll() throws SQLException {
-        List<Student> students = new ArrayList<>();
-        if (connection != null) {
-
-            Statement statement = connection.createStatement();
-            ResultSet set = statement.executeQuery("SELECT * FROM STUDENT");
-
-            while (set.next()) {
-                Student student = new Student(set.getInt(1), set.getString(5), set.getString(2), set.getString(3), set.getString(4));
-                students.add(student);
-            }
-        }
-        return students;
-    }
-
-    public void delete(int id) throws SQLException {
-        if (connection != null) {
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM STUDENT WHERE ID = ?");
-            ps.setInt(1, id);
-            int res = ps.executeUpdate();
-        } else
-            throw new SQLException("Connection is null");
-
-    }
-
-    public int edit(Student student) throws SQLException {
-        if (connection != null) {
-            PreparedStatement ps = connection.prepareStatement("UPDATE STUDENT SET NAME = ?  , FAMILY = ? ,MAJOR = ?, SSN = ? WHERE ID = ?");
-            ps.setString(1, student.getName());
-            ps.setString(2, student.getFamily());
-            ps.setString(3, student.getMajor());
-            ps.setString(4, student.getSsn());
-            ps.setInt(5, student.getId());
-            int res = ps.executeUpdate();
-            return res;
-        } else
-            throw new SQLException("Connection is null");
-
-    }
-
-    public Student findById(int id) throws SQLException, StudentNotFoundException{
-        Student student = null;
-        if (connection != null) {
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM STUDENT WHERE ID = ?");
-            ps.setInt(1, id);
-            ResultSet res = ps.executeQuery();
-
-            if(res.next()){
-                student = new Student();
-                student.setId(res.getInt("id"));
-                student.setName(res.getString(2));
-                student.setFamily(res.getString(3));
-                student.setMajor(res.getString(4));
-                student.setSsn(res.getString(5));
-            }
-        } else
-            throw new SQLException("Connection is null");
-        if(student == null)
-            throw new StudentNotFoundException("student no found");
-        else
-            return student;
-    }
-
-    public Student findBySsn(String ssn) throws SQLException {
-        Student student = null;
-        if (connection != null) {
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM STUDENT WHERE SSN = ?");
-            ps.setString(1, ssn);
-            ResultSet res = ps.executeQuery();
-
-            if(res.next()){
-                student = new Student();
-                student.setId(res.getInt("id"));
-                student.setName(res.getString(2));
-                student.setFamily(res.getString(3));
-                student.setMajor(res.getString(4));
-                student.setSsn(res.getString(5));
-            }
-        } else
-            throw new SQLException("Error in database connection");
-        if(student == null)
-            throw new StudentNotFoundException("student no found");
-        else
-            return student;
-    }
 }
