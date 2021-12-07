@@ -1,5 +1,7 @@
 package config;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -7,7 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -15,6 +20,7 @@ import java.util.Properties;
 @Configuration
 @ComponentScan({"data" , "services"})
 @PropertySource("classpath:database.properties")
+@EnableTransactionManagement
 public class HibernateConfig {
 
     @Autowired
@@ -25,7 +31,7 @@ public class HibernateConfig {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
         sessionFactory.setDataSource(getDataSource());
-        sessionFactory.setPackagesToScan("entities.*");
+        sessionFactory.setPackagesToScan("entities");
         sessionFactory.setHibernateProperties(hibernateProperties());
 
 
@@ -54,6 +60,21 @@ public class HibernateConfig {
         return dataSource;
 
 
+    }
+
+    @Bean
+    public Logger logger(){
+        return LogManager.getLogger(HibernateConfig.class);
+    }
+
+
+
+    @Bean
+    public PlatformTransactionManager hibernateTransactionManager() {
+        HibernateTransactionManager transactionManager
+                = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(getSessionFactory().getObject());
+        return transactionManager;
     }
 
 }

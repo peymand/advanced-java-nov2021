@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Student;
+import org.springframework.context.ApplicationContext;
 import services.StudentService;
 
 import javax.servlet.ServletException;
@@ -21,7 +22,9 @@ public class StudentListController extends HttpServlet {
 
 
         try {
-            StudentService service = new StudentService();
+            ApplicationContext context = (ApplicationContext) req.getServletContext().getAttribute("context");
+
+            StudentService service = (StudentService) context.getBean("service");
 
             List<Student> students = service.getAll();
 //            ObjectMapper mapper = new ObjectMapper();

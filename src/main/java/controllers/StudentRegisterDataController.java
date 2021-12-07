@@ -3,6 +3,7 @@ package controllers;
 import entities.Student;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
 import services.StudentService;
 
 import javax.servlet.ServletException;
@@ -39,8 +40,10 @@ public class StudentRegisterDataController extends HttpServlet {
         Student student = new Student(ssn,name,family,major);
 
         try {
-            StudentService studentService = new StudentService();
-            studentService.save(student);
+            ApplicationContext context = (ApplicationContext) req.getServletContext().getAttribute("context");
+
+            StudentService service = (StudentService) context.getBean("service");
+            service.save(student);
             logger.debug("user with ip=" + req.getRemoteAddr() + " visiting student list page ");
             resp.sendRedirect("/student-list-page.do");
 

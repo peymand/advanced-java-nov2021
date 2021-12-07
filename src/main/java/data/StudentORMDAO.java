@@ -17,12 +17,11 @@ public class StudentORMDAO implements StudentDAO{
     @Autowired
     SessionFactory sessionFactory;
 
+
     @Override
     public int save(Student student) throws SQLException {
-        Session session = sessionFactory.getCurrentSession();
-        session.getTransaction().begin();
+        Session session = sessionFactory.openSession();
         session.save(student);
-        session.getTransaction().commit();
         session.close();
         return 0;
     }
@@ -38,18 +37,14 @@ public class StudentORMDAO implements StudentDAO{
     @Override
     public void delete(int id) throws SQLException {
         Session session = sessionFactory.getCurrentSession();
-        session.getTransaction().begin();
         session.detach(new Student(id));
-        session.getTransaction().commit();
         session.close();
     }
 
     @Override
     public int edit(Student student) throws SQLException {
         Session session = sessionFactory.getCurrentSession();
-        session.getTransaction().begin();
         session.update(student);
-        session.getTransaction().commit();
         session.close();
         return 0;
     }
@@ -57,9 +52,7 @@ public class StudentORMDAO implements StudentDAO{
     @Override
     public Student findById(int id) throws SQLException, StudentNotFoundException {
         Session session = sessionFactory.getCurrentSession();
-        session.getTransaction().begin();
         session.get(Student.class , id);
-        session.getTransaction().commit();
         session.close();
         return null;
     }

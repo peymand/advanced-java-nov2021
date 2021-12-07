@@ -3,26 +3,47 @@ package services;
 import data.StudentJDBCDAO;
 import data.StudentORMDAO;
 import entities.Student;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.sql.SQLException;
 import java.util.List;
 
+@Service("service")
+@Scope("singleton")
 public class StudentService {
 
+    @Autowired
+    Logger logger;
+
+    @Value("10")
+    private int item;
 //    private StudentJDBCDAO studentJDBCDAO;
+    @Autowired
     private StudentORMDAO studentORMDAO;
 
     public StudentService() throws SQLException{
 
 //        studentJDBCDAO = new StudentJDBCDAO();
-        studentORMDAO = new StudentORMDAO();
+//        studentORMDAO = new StudentORMDAO();
     }
-
+    @PostConstruct
+    public void f(){
+        logger.info("this is in service object");
+    }
+    @Transactional
     public int save(Student student) throws SQLException {
 //        return studentJDBCDAO.save(student);
         return studentORMDAO.save(student);
     }
-
+    @Transactional
     public List<Student> getAll() throws SQLException {
 //        return studentJDBCDAO.getAll();
         return studentORMDAO.getAll();
