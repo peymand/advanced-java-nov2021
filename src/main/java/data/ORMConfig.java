@@ -9,7 +9,7 @@ public class ORMConfig {
     private static SessionFactory sessionFactory;
 
     static {
-        SessionFactory sessionFactory = new Configuration().configure().
+        SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").
             addAnnotatedClass(Student.class).buildSessionFactory();
     }
 
