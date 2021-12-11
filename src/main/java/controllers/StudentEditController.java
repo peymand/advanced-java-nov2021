@@ -23,7 +23,8 @@ public class StudentEditController extends HttpServlet {
         String major = req.getParameter("major");
         String ssn = req.getParameter("ssn");
 
-        Student st = new Student(Integer.parseInt(id),ssn,name,family,major);
+        //TODO : to be fixed
+        Student st = new Student(Integer.parseInt(id),ssn,name,family,major,null);
 
         try {
             StudentService service = new StudentService();

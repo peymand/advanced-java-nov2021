@@ -5,6 +5,7 @@ import entities.Book;
 import entities.Student;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import services.StudentService;
@@ -21,6 +22,7 @@ import java.sql.SQLException;
 @WebServlet("/student-register.do")
 public class StudentRegisterDataController extends HttpServlet {
 
+
     private static Logger logger = LogManager.getLogger(StudentRegisterDataController.class);
 
     public StudentRegisterDataController(){
@@ -36,8 +38,9 @@ public class StudentRegisterDataController extends HttpServlet {
         String major = req.getParameter("major");
         String ssn = req.getParameter("ssn");
         String bookText = req.getParameter("bookTextVar");
+        ApplicationContext context = (ApplicationContext) req.getServletContext().getAttribute("context");
 
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = (ObjectMapper) context.getBean("objectMapper");
 
         Book book = mapper.readValue(bookText, Book.class);
 
@@ -47,7 +50,6 @@ public class StudentRegisterDataController extends HttpServlet {
         Student student = new Student(ssn,name,family,major,book);
 
         try {
-            ApplicationContext context = (ApplicationContext) req.getServletContext().getAttribute("context");
             StudentService service = (StudentService) context.getBean("service");
 
             service.save(student);

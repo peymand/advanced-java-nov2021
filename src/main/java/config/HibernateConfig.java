@@ -1,5 +1,6 @@
 package config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,11 @@ public class HibernateConfig {
         return LogManager.getLogger(HibernateConfig.class);
     }
 
+
+    @Bean
+    public ObjectMapper objectMapper(){
+        return new ObjectMapper();
+    }
 
 
     @Bean

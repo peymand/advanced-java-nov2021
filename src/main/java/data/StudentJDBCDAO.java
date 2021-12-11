@@ -54,7 +54,8 @@ public class StudentJDBCDAO implements StudentDAO{
             ResultSet set = statement.executeQuery("SELECT * FROM STUDENT");
 
             while (set.next()) {
-                Student student = new Student(set.getInt(1), set.getString(5), set.getString(2), set.getString(3), set.getString(4));
+                //TODO : to be fixed
+                Student student = new Student(set.getInt(1), set.getString(5), set.getString(2), set.getString(3), set.getString(4) , null);
                 students.add(student);
             }
         }

@@ -2,6 +2,7 @@ package data;
 
 import entities.Student;
 import exceptions.StudentNotFoundException;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
 import java.util.List;
+
 @Component
 public class StudentORMDAO implements StudentDAO{
 
@@ -17,6 +19,8 @@ public class StudentORMDAO implements StudentDAO{
     @Autowired
     SessionFactory sessionFactory;
 
+    @Autowired
+    Logger logger;
 
     @Override
     public int save(Student student) throws SQLException {
