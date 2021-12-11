@@ -32,6 +32,7 @@ public class StudentRegisterDataController extends HttpServlet {
         String family = req.getParameter("family");
         String major = req.getParameter("major");
         String ssn = req.getParameter("ssn");
+        String bookText = req.getParameter("bookTextVar");
 
 
 

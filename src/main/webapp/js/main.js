@@ -138,3 +138,42 @@ function sendAsyncDataToRestService() {
 
 
 }
+
+function openModal() {
+
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function () {
+        modal.style.display = "none"
+    }
+
+    return false;
+
+}
+
+function sendBookDataToRegForm(){
+
+    var modal = document.getElementById("myModal");
+    var book = {"title" : document.getElementById("title").value, "price" : document.getElementById("price").value};
+    var bookText =  JSON.stringify(book);
+    document.getElementById("bookText").innerText = bookText
+    document.getElementById("bookTextVar").value = bookText
+
+
+    modal.style.display = "none";
+
+    return false;
+}
+
+
+window.onclick = function (event) {
+
+    var modal = document.getElementById("myModal");
+    if(event.target == modal){
+        modal.style.display = "none"
+
+    }
+
+}
