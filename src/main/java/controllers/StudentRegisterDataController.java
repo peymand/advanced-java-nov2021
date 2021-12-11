@@ -1,9 +1,12 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import entities.Book;
 import entities.Student;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import services.StudentService;
 
 import javax.servlet.ServletException;
@@ -34,16 +37,19 @@ public class StudentRegisterDataController extends HttpServlet {
         String ssn = req.getParameter("ssn");
         String bookText = req.getParameter("bookTextVar");
 
+        ObjectMapper mapper = new ObjectMapper();
+
+        Book book = mapper.readValue(bookText, Book.class);
 
 
-        logger.info(String.format("[request parameters : %s=name , %s , %s , %s -> " +
-                "goes to persist in database as a student]",name,family,major,ssn));
-        Student student = new Student(ssn,name,family,major);
+        logger.info(String.format("[request parameters : %s=name , %s , %s , %s , %s -> " +
+                "goes to persist in database as a student]",name,family,major,ssn, book));
+        Student student = new Student(ssn,name,family,major,book);
 
         try {
             ApplicationContext context = (ApplicationContext) req.getServletContext().getAttribute("context");
-
             StudentService service = (StudentService) context.getBean("service");
+
             service.save(student);
             logger.debug("user with ip=" + req.getRemoteAddr() + " visiting student list page ");
             resp.sendRedirect("/student-list-page.do");
