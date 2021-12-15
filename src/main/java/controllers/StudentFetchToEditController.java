@@ -1,6 +1,7 @@
 package controllers;
 
 import entities.Student;
+import org.springframework.context.ApplicationContext;
 import services.StudentService;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,8 @@ public class StudentFetchToEditController extends HttpServlet {
         String sid = req.getParameter("id");
         int id = Integer.parseInt(sid);
         try{
-            StudentService service = new StudentService();
+            ApplicationContext context = (ApplicationContext) req.getServletContext().getAttribute("context");
+            StudentService service = (StudentService) context.getBean("service");
             Student student =  service.findById(id);
             req.setAttribute("std", student);
             req.getRequestDispatcher("/WEB-INF/student-edit.jsp").forward(req, resp);

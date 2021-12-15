@@ -28,7 +28,7 @@ public class StudentFindBySsnController extends HttpServlet {
             if(student == null){
                 resp.getWriter().print(mapper.writeValueAsString("OK"));
             }else{
-
+                student.getBook().setStudent(null);
                 String result = mapper.writeValueAsString(student);
                 resp.getWriter().print(result);
             }

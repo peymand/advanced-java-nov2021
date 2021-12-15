@@ -56,23 +56,27 @@ public class StudentORMDAO implements StudentDAO{
 
     @Override
     public Student findById(int id) throws SQLException, StudentNotFoundException {
-        Session session = sessionFactory.getCurrentSession();
-        session.get(Student.class , id);
+        Session session = sessionFactory.openSession();
+        Student student = session.get(Student.class , id);
         session.close();
-        return null;
+        return student;
     }
 
     @Override
     public Student findBySsn(String ssn) throws SQLException {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
+        Student student = null;
         try {
-            Student student = (Student) session
+            student = (Student) session
                     .createQuery("from Student s where s.ssn = :ssn")
                     .setParameter("ssn", ssn)
                     .getSingleResult();
-            return student;
+
         }catch (NoResultException e){
-            return null;
+
+        }finally {
+            session.close();
+            return student;
         }
 
     }

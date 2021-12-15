@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.ext.SqlBlobSerializer;
 import entities.Student;
+import org.springframework.context.ApplicationContext;
 import services.StudentService;
 
 import javax.servlet.ServletException;
@@ -27,7 +28,8 @@ public class StudentEditController extends HttpServlet {
         Student st = new Student(Integer.parseInt(id),ssn,name,family,major,null);
 
         try {
-            StudentService service = new StudentService();
+            ApplicationContext context = (ApplicationContext) req.getServletContext().getAttribute("context");
+            StudentService service = (StudentService) context.getBean("service");
             service.edit(st);
             resp.sendRedirect("/student-list-page.do");
         }catch (SQLException e){

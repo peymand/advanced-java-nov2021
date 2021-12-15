@@ -127,7 +127,7 @@ function sendAsyncDataToRestService() {
     //callback functions
 
     xhr.onreadystatechange = function () {
-        document.getElementById("error-msg").style.display = "none";
+        // document.getElementById("error-msg").style.display = "none";
         document.getElementById("st-table").style.display = "none";
 
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -136,7 +136,7 @@ function sendAsyncDataToRestService() {
 
             var resultJson = JSON.parse(student);
             if(resultJson.message == "OK"){
-                return true;
+
             }
             else{
                 document.getElementById("st-table").style.display = "block";
@@ -146,8 +146,7 @@ function sendAsyncDataToRestService() {
                 document.getElementById("major").innerText = studentData.major;
                 document.getElementById("ssnn").innerText = studentData.ssn;
                 //TODO: to show an error message which declare ssn in duplicate
-                alert("ssn is duplicate")
-                return false;
+                window.alert("ssn is duplicate");
             }
 
         }
@@ -161,7 +160,7 @@ function sendAsyncDataToRestService() {
     }
 
     xhr.send("ssn=" + data);
-
+    return false;
 
 }
 

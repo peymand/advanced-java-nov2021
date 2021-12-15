@@ -13,7 +13,6 @@ public class ErrorController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        String msg =  req.getParameter("msg");
-
         req.getRequestDispatcher("/WEB-INF/error.jsp").forward(req,resp);
     }
 }

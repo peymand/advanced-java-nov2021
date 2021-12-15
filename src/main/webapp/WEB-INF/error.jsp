@@ -1,8 +1,7 @@
-<%
-    String pageTitle = "Error Page";
-%>
+
 <jsp:include page="header.jsp" flush="true">
-    <jsp:param name="pageTitle" value="<%=pageTitle%>"/>
+    <jsp:param name="pageTitle" value="Error Page"/>
+    <jsp:param name="pageRoute" value=""/>
 </jsp:include>
 
     <div class="alert">

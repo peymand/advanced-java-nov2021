@@ -5,6 +5,7 @@ import entities.Book;
 import entities.Student;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -56,7 +57,7 @@ public class StudentRegisterDataController extends HttpServlet {
             logger.debug("user with ip=" + req.getRemoteAddr() + " visiting student list page ");
             resp.sendRedirect("/student-list-page.do");
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             String msg = "some error";
             resp.sendRedirect(req.getContextPath() +  "/error.do?msg=" + msg);
             logger.error(String.format("error in persist student with message %s",e.getMessage()));

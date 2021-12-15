@@ -60,7 +60,7 @@ public class StudentService {
 //        studentJDBCDAO.edit(student);
         studentORMDAO.edit(student);
     }
-
+    @Transactional
     public Student findById(int id) throws SQLException {
 //        return studentJDBCDAO.findById(id);
         return studentORMDAO.findById(id);

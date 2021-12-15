@@ -22,20 +22,10 @@
         <th>Family</th>
         <th>Major</th>
         <th>SSN</th>
+        <th>Book</th>
         <th>Action</th>
     </tr>
-<%--   Standard Action --%>
-<%--    <jsp:forward page="index.jsp"></jsp:forward>--%>
-<%--    ${data} Scope --%>
 
-<%--    <jsp:getProperty name="data" property="name"/>--%>
-<%--    ${data.name}--%>
-    ${sessionScope.data}
-    ${requestScope.data}
-    ${applicationScope.data}
-    ${data}
-
-    ${pageScope.jspath}
     <c:forEach items="${list}" var="st" varStatus="loopstatus">
 
         <tr>
@@ -44,6 +34,7 @@
             <td>${st.family}</td>
             <td>${st.major}</td>
             <td>${st.ssn}</td>
+            <td><c:out value="[${st.book.title} : ${st.book.price}]"/></td>
             <td>
                 <a href="/student-delete.do?id=${st.id}" id="delete-student">
                     <img src="/img/icon-delete-16.jpg" style="width: 40px; height: 40px;"
