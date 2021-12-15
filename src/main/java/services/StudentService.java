@@ -65,7 +65,7 @@ public class StudentService {
 //        return studentJDBCDAO.findById(id);
         return studentORMDAO.findById(id);
     }
-
+    @Transactional
     public Student findBySsn(String ssn) throws SQLException {
 //        return studentJDBCDAO.findBySsn(ssn);
         return studentORMDAO.findBySsn(ssn);

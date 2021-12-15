@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Student;
+import org.springframework.context.ApplicationContext;
 import services.StudentService;
 
 import javax.servlet.ServletException;
@@ -15,22 +16,23 @@ import java.sql.SQLException;
 
 public class StudentFindBySsnController extends HttpServlet {
 
-    int x;
-    public StudentFindBySsnController(){
-        x=10;
-    }
-
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String data =  this.getServletConfig().getInitParameter("data");
         String ssn =  req.getParameter("ssn");
         try {
-            StudentService service = new StudentService();
+            ApplicationContext context = (ApplicationContext) req.getServletContext().getAttribute("context");
+            StudentService service = (StudentService) context.getBean("service");
             Student student =  service.findBySsn(ssn);
             ObjectMapper mapper = new ObjectMapper();
-            String result = mapper.writeValueAsString(student);
-            resp.getWriter().print(result);
+            if(student == null){
+                resp.getWriter().print(mapper.writeValueAsString("OK"));
+            }else{
+
+                String result = mapper.writeValueAsString(student);
+                resp.getWriter().print(result);
+            }
+
 
         } catch (SQLException e) {
             ObjectMapper mapper = new ObjectMapper();

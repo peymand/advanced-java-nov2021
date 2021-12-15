@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.NoResultException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -64,10 +65,15 @@ public class StudentORMDAO implements StudentDAO{
     @Override
     public Student findBySsn(String ssn) throws SQLException {
         Session session = sessionFactory.getCurrentSession();
-        Student student = (Student) session
-                .createQuery("from Student s where s.ssn = :ssn")
-                .setParameter("ssn",ssn)
-                .getSingleResult();
-        return student;
+        try {
+            Student student = (Student) session
+                    .createQuery("from Student s where s.ssn = :ssn")
+                    .setParameter("ssn", ssn)
+                    .getSingleResult();
+            return student;
+        }catch (NoResultException e){
+            return null;
+        }
+
     }
 }
