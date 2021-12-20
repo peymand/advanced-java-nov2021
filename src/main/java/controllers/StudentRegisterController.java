@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/student-register-page.do")
+//@WebServlet("/student-register-page.do")
 public class StudentRegisterController extends HttpServlet {
 
     @Override

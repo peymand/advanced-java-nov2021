@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/student-register.do")
+//@WebServlet("/student-register.do")
 public class StudentRegisterDataController extends HttpServlet {
 
 

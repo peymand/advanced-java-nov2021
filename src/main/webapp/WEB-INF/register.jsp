@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    String pageRoute = "/student-register-page.do";
+    String pageRoute = "/student/register-page.do";
 %>
 
 <jsp:include page="header.jsp" flush="true">

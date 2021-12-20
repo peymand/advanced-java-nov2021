@@ -19,6 +19,7 @@ public class StudentFindBySsnController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String s = this.getServletConfig().getInitParameter("data");
         String ssn =  req.getParameter("ssn");
         try {
             ApplicationContext context = (ApplicationContext) req.getServletContext().getAttribute("context");

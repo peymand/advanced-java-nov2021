@@ -1,6 +1,5 @@
 package exceptions;
 
-import com.sun.xml.internal.ws.api.pipe.ThrowableContainerPropertySet;
 
 import java.sql.SQLException;
 

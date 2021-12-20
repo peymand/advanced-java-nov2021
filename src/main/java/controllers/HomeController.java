@@ -1,40 +1,31 @@
 package controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import entities.Book;
 import entities.Student;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import services.StudentService;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
-@WebServlet("/home.do")
+@Controller
+@RequestMapping("/")
+public class HomeController {
 
-public class HomeController extends HttpServlet {
 
-
-    private static final Logger logger = LogManager.getLogger(HomeController.class);
-
-    @Override
-    public void init() throws ServletException {
-
+    @RequestMapping("/")
+    public String showHomePage(){
+        return "index";
     }
 
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ServletContext context = getServletContext();
-        Student student = (Student) context.getAttribute("data");
-        logger.debug("in home controller");
-        logger.info("Hello world");
-        logger.warn("we are in logger info mode");
-        req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req,resp);
-    }
 }

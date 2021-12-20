@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet("/login.do")
+@WebServlet(urlPatterns = {"/login.do"} , loadOnStartup = 1)
 public class LoginController extends HttpServlet {
 
     @Override

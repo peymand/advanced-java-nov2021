@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/student-list-page.do")
+//@WebServlet("/student-list-page.do")
 public class StudentListController extends HttpServlet {
 
     @Override
